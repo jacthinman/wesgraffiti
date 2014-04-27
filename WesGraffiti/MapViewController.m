@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 weshacks. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MapViewController.h"
 
 @interface ViewController ()
 
@@ -17,7 +17,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    _mapView.showsUserLocation = YES;
+}
+
+- (IBAction)centerZoom:(id)sender
+{
+    MKUserLocation *userLocation = _mapView.userLocation;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 1200, 1200);
+    [_mapView setRegion:region animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
